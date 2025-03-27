@@ -1,89 +1,102 @@
 "use client";
-
+import React, { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useRef, useState, useEffect } from "react";
 
 export const BackgroundBeamsWithCollision = ({ children, className }) => {
   const containerRef = useRef(null);
   const parentRef = useRef(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [beams, setBeams] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768);
+      generateBeams(window.innerWidth);
     };
     
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // Initialize with window dimensions
+    if (typeof window !== 'undefined') {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+    }
+    
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
   }, []);
+
+  const generateBeams = (windowWidth) => {
+    const newBeams = [
+      // Left-aligned comets
+      {
+        initialX: 50,
+        translateX: 50,
+        duration: 7,
+        repeatDelay: 3,
+        delay: 2,
+        className: "h-16",
+      },
+      {
+        initialX: 80,
+        translateX: 80,
+        duration: 7,
+        repeatDelay: 3,
+        delay: 4,
+        className: "h-16",
+      },
+      // Center-aligned comets
+      {
+        initialX: windowWidth * 0.3,
+        translateX: windowWidth * 0.3,
+        duration: 5,
+        repeatDelay: 7,
+        className: "h-12",
+      },
+      {
+        initialX: windowWidth * 0.4,
+        translateX: windowWidth * 0.4,
+        duration: 5,
+        repeatDelay: 14,
+        delay: 4,
+        className: "h-14",
+      },
+      // Right-aligned comets
+      {
+        initialX: 600,
+        translateX: 600,
+        duration: 3,
+        repeatDelay: 3,
+        delay: 4,
+        className: "h-20",
+      },
+      {
+        initialX: 800,
+        translateX: 800,
+        duration: 11,
+        repeatDelay: 2,
+        className: "h-24",
+      },
+    ].map(beam => getBeamProperties(beam));
+    
+    setBeams(newBeams);
+  };
 
   const getBeamProperties = (baseProps) => {
     if (isSmallScreen) {
       return {
         ...baseProps,
-        initialX: baseProps.initialX * 0.4, // Move comets more to the left
-        translateX: baseProps.translateX * 0.4, // Adjust movement for mobile
+        initialX: baseProps.initialX * 0.4,
+        translateX: baseProps.translateX * 0.4,
         duration: baseProps.duration * 0.6,
         repeatDelay: Math.max(baseProps.repeatDelay * 0.5, 1),
-        className: cn(baseProps.className, "h-12"), // Slightly larger than before
+        className: cn(baseProps.className, "h-12"),
       };
     }
     return baseProps;
   };
-
-  const beams = [
-    // Left-aligned comets for better mobile visibility
-    {
-      initialX: 50,  // Reduced from 100
-      translateX: 50,
-      duration: 7,
-      repeatDelay: 3,
-      delay: 2,
-      className: "h-16",
-    },
-    {
-      initialX: 80,  // Reduced from 200
-      translateX: 80,
-      duration: 7,
-      repeatDelay: 3,
-      delay: 4,
-      className: "h-16",
-    },
-    // Center-aligned comets
-    {
-      initialX: window.innerWidth * 0.3,  // Dynamic positioning
-      translateX: window.innerWidth * 0.3,
-      duration: 5,
-      repeatDelay: 7,
-      className: "h-12",
-    },
-    {
-      initialX: window.innerWidth * 0.4,
-      translateX: window.innerWidth * 0.4,
-      duration: 5,
-      repeatDelay: 14,
-      delay: 4,
-      className: "h-14",
-    },
-    // Original comets (will be adjusted by getBeamProperties)
-    {
-      initialX: 600,
-      translateX: 600,
-      duration: 3,
-      repeatDelay: 3,
-      delay: 4,
-      className: "h-20",
-    },
-    {
-      initialX: 800,
-      translateX: 800,
-      duration: 11,
-      repeatDelay: 2,
-      className: "h-24",
-    },
-  ].map(getBeamProperties);
 
   return (
     <div
@@ -125,13 +138,14 @@ const CollisionMechanism = React.forwardRef(
     const [beamKey, setBeamKey] = useState(0);
     const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false);
 
-    // Adjust beam position for mobile
+    // Safe window access
+    const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
     const adjustedInitialX = isSmallScreen 
-      ? Math.min(beamOptions.initialX, window.innerWidth * 0.5)
+      ? Math.min(beamOptions.initialX, windowWidth * 0.5)
       : beamOptions.initialX;
 
     const adjustedTranslateX = isSmallScreen
-      ? Math.min(beamOptions.translateX, window.innerWidth * 0.5)
+      ? Math.min(beamOptions.translateX, windowWidth * 0.5)
       : beamOptions.translateX;
 
     useEffect(() => {

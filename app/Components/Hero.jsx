@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { BackgroundBeamsWithCollision } from "@/app/Components/ui/background-beams-with-collision";
