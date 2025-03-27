@@ -1,7 +1,7 @@
 "use client";
-import { Navbar } from "@/app/components/Navbar";
-import { Hero } from "@/app/Components/Hero";
-import { About } from "@/app/Components/About"
+import Navbar from "@/app/components/Navbar";
+import Hero from "@/app/Components/Hero";
+import About from "@/app/Components/About"
 
 export default function Home() {
   return (

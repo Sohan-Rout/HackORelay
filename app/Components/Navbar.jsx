@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -137,3 +136,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;

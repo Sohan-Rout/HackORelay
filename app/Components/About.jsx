@@ -68,7 +68,7 @@ export const About = () => {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
-        {/* Section Header - Spaced out more */}
+        {/* Section Header */}
         <motion.div variants={itemVariants} className="text-center mb-20">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500 mb-4">
             About
@@ -78,24 +78,21 @@ export const About = () => {
           </p>
         </motion.div>
 
-        <div>
-            {/* Arrow Image - Adjusted positioning */}
-          <motion.div
-            className="absolute right-20 md:right-20 top-0 -translate-y-1/2 z-20"
-            variants={arrowVariants}
-            animate="wiggle"
-          >
-            <img 
-              src="/arrow.png" 
-              alt="Arrow pointing" 
-              className="w-24 h-24 md:w-32 md:h-32 object-contain"
-            />
-          </motion.div>
-        </div>
+        {/* Arrow Image - Hidden on mobile, visible on md and up */}
+        <motion.div
+          className="hidden md:block absolute right-20 lg:right-40 top-0 -translate-y-1/2 z-20"
+          variants={arrowVariants}
+          animate="wiggle"
+        >
+          <img 
+            src="/arrow.png" 
+            alt="Arrow pointing" 
+            className="w-24 h-24 lg:w-32 lg:h-32 object-contain"
+          />
+        </motion.div>
 
-        {/* Content Container with more spacing */}
+        {/* Content Container */}
         <div className="relative w-full flex justify-center mb-5">
-          {/* Card Container with strong blue glow */}
           <div className="w-full max-w-3xl mx-4">
             <motion.div
               variants={itemVariants}
@@ -119,7 +116,7 @@ export const About = () => {
                   movementDuration={3}
                   borderWidth={2}
                   className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
-                  gradient="from-blue-400/60 via-blue-500/40 to-blue-600/30" // Pure blue gradient
+                  gradient="from-blue-400/60 via-blue-500/40 to-blue-600/30"
                 />
                 <div className="relative z-10 space-y-6">
                   <h3 className="text-2xl font-semibold text-blue-300">
@@ -134,7 +131,7 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Call to Action with more spacing */}
+        {/* Call to Action */}
         <motion.div 
           variants={itemVariants} 
           className="mt-10 text-center w-full max-w-2xl mx-auto"
@@ -147,3 +144,5 @@ export const About = () => {
     </section>
   );
 };
+
+export default About;
