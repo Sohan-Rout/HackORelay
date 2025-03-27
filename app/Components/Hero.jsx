@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { BackgroundBeamsWithCollision } from "@/app/Components/ui/background-beams-with-collision";
 
 export const Hero = () => {
-  const targetDate = new Date("2025-04-15T00:00:00").getTime();
+  const targetDate = new Date("2025-05-05T00:00:00").getTime();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,

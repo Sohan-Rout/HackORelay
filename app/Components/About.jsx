@@ -91,8 +91,9 @@ export const About = () => {
           />
         </motion.div>
 
-        {/* Content Container */}
-        <div className="relative w-full flex justify-center mb-5">
+        {/* Main Content Container */}
+        <div className="relative w-full flex flex-col items-center gap-8 mb-5">
+          {/* Main About Card */}
           <div className="w-full max-w-3xl mx-4">
             <motion.div
               variants={itemVariants}
@@ -100,7 +101,6 @@ export const About = () => {
               whileHover="hover"
               className="relative"
             >
-              {/* Blue Glow Card */}
               <motion.div
                 variants={cardVariants}
                 className={cn(
@@ -124,6 +124,92 @@ export const About = () => {
                   </h3>
                   <p className="text-gray-300 text-lg leading-relaxed">
                     {aboutText}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Date and Venue Cards - Side by Side */}
+          <div className="w-full max-w-3xl mx-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Date Card */}
+            <motion.div
+              variants={itemVariants}
+              initial="rest"
+              whileHover="hover"
+              className="relative"
+            >
+              <motion.div
+                variants={cardVariants}
+                className={cn(
+                  "relative bg-neutral-900/80 backdrop-blur-md p-6 rounded-xl",
+                  "border border-transparent",
+                  "shadow-xl h-full"
+                )}
+              >
+                <GlowingEffect
+                  blur={80}
+                  spread={60}
+                  glow={true}
+                  movementDuration={3}
+                  borderWidth={2}
+                  className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
+                  gradient="from-blue-400/40 via-blue-500/30 to-blue-600/20"
+                />
+                <div className="relative z-10 space-y-4">
+                  <h3 className="text-xl font-semibold text-blue-300 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Event Date
+                  </h3>
+                  <p className="text-gray-300 text-lg">
+                    May 5-6, 2025
+                  </p>
+                  <p className="text-gray-400">
+                    24-hour hackathon starting at 9:00 AM
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Venue Card */}
+            <motion.div
+              variants={itemVariants}
+              initial="rest"
+              whileHover="hover"
+              className="relative"
+            >
+              <motion.div
+                variants={cardVariants}
+                className={cn(
+                  "relative bg-neutral-900/80 backdrop-blur-md p-6 rounded-xl",
+                  "border border-transparent",
+                  "shadow-xl h-full"
+                )}
+              >
+                <GlowingEffect
+                  blur={80}
+                  spread={60}
+                  glow={true}
+                  movementDuration={3}
+                  borderWidth={2}
+                  className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
+                  gradient="from-blue-400/40 via-blue-500/30 to-blue-600/20"
+                />
+                <div className="relative z-10 space-y-4">
+                  <h3 className="text-xl font-semibold text-blue-300 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Venue
+                  </h3>
+                  <p className="text-gray-300 text-lg">
+                    Dronacharya College of Engineering
+                  </p>
+                  <p className="text-gray-400">
+                    Gurugram, Khentawas
                   </p>
                 </div>
               </motion.div>

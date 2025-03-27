@@ -9,47 +9,65 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
   const parentRef = useRef(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  // Check screen size on mount and resize
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768); // md breakpoint
+      setIsSmallScreen(window.innerWidth < 768);
     };
     
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Adjust beam properties based on screen size
   const getBeamProperties = (baseProps) => {
     if (isSmallScreen) {
       return {
         ...baseProps,
-        duration: baseProps.duration * 0.6, // 40% faster on small screens
-        repeatDelay: Math.max(baseProps.repeatDelay * 0.5, 1), // 50% shorter delay, minimum 1s
-        className: cn(baseProps.className, "h-8"), // Smaller beams on mobile
+        initialX: baseProps.initialX * 0.4, // Move comets more to the left
+        translateX: baseProps.translateX * 0.4, // Adjust movement for mobile
+        duration: baseProps.duration * 0.6,
+        repeatDelay: Math.max(baseProps.repeatDelay * 0.5, 1),
+        className: cn(baseProps.className, "h-12"), // Slightly larger than before
       };
     }
     return baseProps;
   };
 
   const beams = [
+    // Left-aligned comets for better mobile visibility
     {
-      initialX: 10,
-      translateX: 10,
+      initialX: 50,  // Reduced from 100
+      translateX: 50,
       duration: 7,
       repeatDelay: 3,
       delay: 2,
       className: "h-16",
     },
     {
-      initialX: 20,
-      translateX: 10,
+      initialX: 80,  // Reduced from 200
+      translateX: 80,
       duration: 7,
       repeatDelay: 3,
       delay: 4,
       className: "h-16",
     },
+    // Center-aligned comets
+    {
+      initialX: window.innerWidth * 0.3,  // Dynamic positioning
+      translateX: window.innerWidth * 0.3,
+      duration: 5,
+      repeatDelay: 7,
+      className: "h-12",
+    },
+    {
+      initialX: window.innerWidth * 0.4,
+      translateX: window.innerWidth * 0.4,
+      duration: 5,
+      repeatDelay: 14,
+      delay: 4,
+      className: "h-14",
+    },
+    // Original comets (will be adjusted by getBeamProperties)
     {
       initialX: 600,
       translateX: 600,
@@ -59,41 +77,11 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
       className: "h-20",
     },
     {
-      initialX: 100,
-      translateX: 100,
-      duration: 7,
-      repeatDelay: 7,
-      className: "h-12",
-    },
-    {
-      initialX: 400,
-      translateX: 400,
-      duration: 5,
-      repeatDelay: 14,
-      delay: 4,
-      className: "h-14",
-    },
-    {
       initialX: 800,
       translateX: 800,
       duration: 11,
       repeatDelay: 2,
       className: "h-24",
-    },
-    {
-      initialX: 1000,
-      translateX: 1000,
-      duration: 4,
-      repeatDelay: 2,
-      className: "h-16",
-    },
-    {
-      initialX: 1200,
-      translateX: 1200,
-      duration: 6,
-      repeatDelay: 4,
-      delay: 2,
-      className: "h-12",
     },
   ].map(getBeamProperties);
 
@@ -105,12 +93,13 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
         className
       )}
     >
-      {beams.map((beam) => (
+      {beams.map((beam, index) => (
         <CollisionMechanism
-          key={beam.initialX + "beam-idx"}
+          key={`${beam.initialX}-${index}`}
           beamOptions={beam}
           containerRef={containerRef}
           parentRef={parentRef}
+          isSmallScreen={isSmallScreen}
         />
       ))}
       {children}
@@ -127,7 +116,7 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
 };
 
 const CollisionMechanism = React.forwardRef(
-  ({ parentRef, containerRef, beamOptions = {} }, ref) => {
+  ({ parentRef, containerRef, beamOptions = {}, isSmallScreen }, ref) => {
     const beamRef = useRef(null);
     const [collision, setCollision] = useState({
       detected: false,
@@ -135,6 +124,15 @@ const CollisionMechanism = React.forwardRef(
     });
     const [beamKey, setBeamKey] = useState(0);
     const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false);
+
+    // Adjust beam position for mobile
+    const adjustedInitialX = isSmallScreen 
+      ? Math.min(beamOptions.initialX, window.innerWidth * 0.5)
+      : beamOptions.initialX;
+
+    const adjustedTranslateX = isSmallScreen
+      ? Math.min(beamOptions.translateX, window.innerWidth * 0.5)
+      : beamOptions.translateX;
 
     useEffect(() => {
       const checkCollision = () => {
@@ -166,7 +164,6 @@ const CollisionMechanism = React.forwardRef(
       };
 
       const animationInterval = setInterval(checkCollision, 50);
-
       return () => clearInterval(animationInterval);
     }, [cycleCollisionDetected, containerRef]);
 
@@ -191,13 +188,13 @@ const CollisionMechanism = React.forwardRef(
           animate="animate"
           initial={{
             translateY: beamOptions.initialY || "-200px",
-            translateX: beamOptions.initialX || "0px",
+            translateX: adjustedInitialX || "0px",
             rotate: beamOptions.rotate || 0,
           }}
           variants={{
             animate: {
               translateY: beamOptions.translateY || "1800px",
-              translateX: beamOptions.translateX || "0px",
+              translateX: adjustedTranslateX || "0px",
               rotate: beamOptions.rotate || 0,
             },
           }}
