@@ -1,7 +1,7 @@
 "use client";
-import Navbar from "@/app/components/Navbar";
-import Hero from "@/app/Components/Hero";
-import About from "@/app/Components/About"
+import Navbar from "@/app/components/Navbar.jsx";
+import Hero from "@/app/Components/Hero.jsx";
+import About from "@/app/Components/About.jsx"
 
 export default function Home() {
   return (
@@ -11,4 +11,4 @@ export default function Home() {
       <About />
     </div>
   );
-}
+};
