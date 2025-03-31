@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import Navbar from "@/app/Components/Navbar";
 import Hero from "@/app/Components/Hero";
 import About from "@/app/Components/About";
+import Gallery from "./Components/Gallery";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-neutral-900">
+    <div className="relative max-h-screen bg-neutral-900">
       <Navbar />
       <Hero />
       <About />
+      <Gallery />
     </div>
   );
 };
