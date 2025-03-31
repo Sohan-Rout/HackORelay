@@ -328,22 +328,22 @@ class App {
   }
   createMedias(items, bend = 1, textColor, borderRadius, font) {
     const defaultItems = [
-      { image: `shruti.jpg`, text: 'Shruti' },
-      { image: `Ayush (2).jpeg`, text: 'Ayush' },
-      { image: `Ashie Sharma .jpg`, text: 'Ashie' },
-      { image: `Sohan Rout.jpg`, text: 'Sohan' },
-      { image: `Akshit Bhandari.jpg`, text: 'Akshit' },
-      { image: `Pratham.png`, text: 'Pratham' },
-      { image: `Sharique.png`, text: 'Sharique' },
-      { image: `Bhumika yadav.jpg`, text: 'Bhumika' },
-      { image: `Chinmay .jpg`, text: 'Chinmay' },
-      { image: `Tamanna Samal .jpg`, text: 'Tamanna' },
-      { image: `Milan.jpg`, text: 'Milan' },
-      { image: `dharuv.jpg`, text: 'Dharuv' },
-      { image: `Vaibhav .jpg`, text: 'Vaibhav' },
-      { image: `Ankiet.jpg`, text: 'Manav' },
-      { image: `Nancy.jpg`, text: "Nancy" } ,
-      { image: `Ankiet.jpg`, text: 'Aniket' },
+      { image: `teamImage/Shruti.jpg`, text: 'Shruti' },
+      { image: `teamImage/AyushThakur.jpeg`, text: 'Ayush' },
+      { image: `teamImage/AshieSharma.jpg`, text: 'Ashie' },
+      { image: `teamImage/SohanRout.jpg`, text: 'Sohan' },
+      { image: `teamImage/AkshitBhandari.jpg`, text: 'Akshit' },
+      { image: `teamImage/Pratham.png`, text: 'Pratham' },
+      { image: `teamImage/Sharique.png`, text: 'Sharique' },
+      { image: `teamImage/BhumikaYadav.jpg`, text: 'Bhumika' },
+      { image: `teamImage/Chinmay.jpg`, text: 'Chinmay' },
+      { image: `teamImage/TamannaSamal.jpg`, text: 'Tamanna' },
+      { image: `teamImage/Milan.jpg`, text: 'Milan' },
+      { image: `teamImage/dharuv.jpg`, text: 'Dharuv' },
+      { image: `teamImage/Vaibhav.jpg`, text: 'Vaibhav' },
+      { image: `teamImage/Ankiet.jpg`, text: 'Manav' },
+      { image: `teamImage/Nancy.jpg`, text: "Nancy" } ,
+      { image: `teamImage/Ankiet.jpg`, text: 'Aniket' },
     ]
     const galleryItems = items && items.length ? items : defaultItems
     this.mediasImages = galleryItems.concat(galleryItems)
