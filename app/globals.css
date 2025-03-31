@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ /* Dotted Background (Asternity Style) */
+ .dotted-background {
+    background-image: radial-gradient(circle, #b1aeae 1px, transparent 1px); /* gray-400 dots in light mode */
+    background-size: 30px 30px; /* Smaller spacing for a refined look */
+    opacity: 0.5; /* Subtle effect */
+  }
+
+  .dark .dotted-background {
+    background-image: radial-gradient(circle, #a1a1a1 1px, transparent 1px); /* gray-500 dots in dark mode */
+  }
+
+.perspective1-1000 {
+  perspective: 1000px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate1-y-180 {
+  transform: rotateY(180deg);
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}

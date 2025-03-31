@@ -34,7 +34,7 @@ export const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Hack-o-Relay
+          Hack'oRelay 4.0
         </motion.a>
 
         {/* Desktop Menu - Centered */}

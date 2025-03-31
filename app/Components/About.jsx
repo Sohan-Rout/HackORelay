@@ -57,8 +57,8 @@ export const About = () => {
 
   return (
     <section className="relative min-h-screen w-full bg-black py-20 overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-blue-900/10 to-black pointer-events-none" />
+      {/* Dotted Grid Background */}
+      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
 
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center"
@@ -69,7 +69,7 @@ export const About = () => {
       >
         {/* Section Header */}
         <motion.div variants={itemVariants} className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500 mb-4">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">
             About
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -103,9 +103,9 @@ export const About = () => {
               <motion.div
                 variants={cardVariants}
                 className={cn(
-                  "relative bg-neutral-900/80 backdrop-blur-md p-8 rounded-xl",
-                  "border border-transparent",
-                  "shadow-xl"
+                  "relative bg-black/90 backdrop-blur-md p-8 rounded-xl",
+                  "border border-purple-500",
+                  "shadow-xl shadow-purple-500/20"
                 )}
               >
                 <GlowingEffect
@@ -115,10 +115,10 @@ export const About = () => {
                   movementDuration={3}
                   borderWidth={2}
                   className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
-                  gradient="from-blue-400/60 via-blue-500/40 to-blue-600/30"
+                  gradient="from-blue-400/60 via-purple-500/40 to-purple-600/30"
                 />
                 <div className="relative z-10 space-y-6">
-                  <h3 className="text-2xl font-semibold text-blue-300">
+                  <h3 className="text-2xl font-semibold text-purple-300">
                     Hack'oRelay 4.0
                   </h3>
                   <p className="text-gray-300 text-lg leading-relaxed">
@@ -141,9 +141,9 @@ export const About = () => {
               <motion.div
                 variants={cardVariants}
                 className={cn(
-                  "relative bg-neutral-900/80 backdrop-blur-md p-6 rounded-xl",
-                  "border border-transparent",
-                  "shadow-xl h-full"
+                  "relative bg-black/90 backdrop-blur-md p-6 rounded-xl",
+                  "border border-purple-500",
+                  "shadow-xl shadow-purple-500/20 h-full"
                 )}
               >
                 <GlowingEffect
@@ -153,10 +153,10 @@ export const About = () => {
                   movementDuration={3}
                   borderWidth={2}
                   className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
-                  gradient="from-blue-400/40 via-blue-500/30 to-blue-600/20"
+                  gradient="from-blue-400/40 via-purple-500/30 to-purple-600/20"
                 />
                 <div className="relative z-10 space-y-4">
-                  <h3 className="text-xl font-semibold text-blue-300 flex items-center gap-2">
+                  <h3 className="text-xl font-semibold text-purple-300 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -182,9 +182,9 @@ export const About = () => {
               <motion.div
                 variants={cardVariants}
                 className={cn(
-                  "relative bg-neutral-900/80 backdrop-blur-md p-6 rounded-xl",
-                  "border border-transparent",
-                  "shadow-xl h-full"
+                  "relative bg-black/90 backdrop-blur-md p-6 rounded-xl",
+                  "border border-purple-500",
+                  "shadow-xl shadow-purple-500/20 h-full"
                 )}
               >
                 <GlowingEffect
@@ -194,10 +194,10 @@ export const About = () => {
                   movementDuration={3}
                   borderWidth={2}
                   className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
-                  gradient="from-blue-400/40 via-blue-500/30 to-blue-600/20"
+                  gradient="from-blue-400/40 via-purple-500/30 to-purple-600/20"
                 />
                 <div className="relative z-10 space-y-4">
-                  <h3 className="text-xl font-semibold text-blue-300 flex items-center gap-2">
+                  <h3 className="text-xl font-semibold text-purple-300 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
