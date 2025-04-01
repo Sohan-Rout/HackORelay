@@ -1,8 +1,7 @@
 "use client";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { GlowingEffect } from "@/app/Components/ui/glowing-effect";
 import { FiCpu, FiDollarSign, FiLink, FiHeart, FiBook, FiWifi, FiGlobe } from "react-icons/fi";
-import { useState, useEffect } from "react";
 
 export const Theme = () => {
   // Animation variants
@@ -90,14 +89,41 @@ export const Theme = () => {
         </motion.div>
 
         {/* Main Content Container */}
-      <div className="relative w-full flex flex-col items-center gap-8 mb-5">
-        {/* Theme Cards Grid */}
-        <div className="w-full max-w-4xl mx-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cards.map((card, index) => (
-            <CardFlip key={index} card={card} index={index} />
-          ))}
+        <div className="relative w-full flex flex-col items-center gap-8 mb-5">
+          {/* Theme Cards Grid */}
+          <div className="w-full max-w-4xl mx-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cards.map((card, index) => (
+              <motion.div
+                key={index}
+                className="w-full h-52 rounded-2xl border-2 shadow-lg relative overflow-hidden"
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+              >
+                <div className={`absolute inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center ${
+                  index % 2 === 0 ? 'border-blue-400 shadow-blue-500/20' : 'border-purple-400 shadow-purple-500/20'
+                }`}>
+                  <GlowingEffect
+                    blur={80}
+                    spread={60}
+                    glow={true}
+                    movementDuration={3}
+                    borderWidth={2}
+                    className={`absolute inset-0 rounded-2xl -z-10 pointer-events-none bg-gradient-to-br ${card.gradient}`}
+                  />
+                  <div className="text-blue-300">
+                    {card.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 text-center px-4">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-200 text-center text-sm mt-3 px-4">
+                    {card.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
 
         {/* Call to Action */}
         <motion.div
@@ -109,111 +135,8 @@ export const Theme = () => {
           </p>
         </motion.div>
       </motion.div>
-
-      <style jsx global>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .preserve-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-
-      `}</style>
     </section>
   );
 };
 
-const CardFlip = ({ card, index }) => {
-    const [isFlipped, setIsFlipped] = useState(false);
-    const controls = useAnimation();
-    const [isMobile, setIsMobile] = useState(false);
-  
-    useEffect(() => {
-      const checkIfMobile = () => {
-        setIsMobile(window.innerWidth < 768);
-      };
-      
-      checkIfMobile();
-      window.addEventListener('resize', checkIfMobile);
-      return () => window.removeEventListener('resize', checkIfMobile);
-    }, []);
-  
-    const handleFlip = async (e) => {
-      e.stopPropagation(); // Prevent event bubbling
-      if (isMobile) {
-        await controls.start({ rotateY: isFlipped ? 0 : 180 });
-        setIsFlipped(!isFlipped);
-      }
-    };
-
-    return (
-        <div 
-          className="w-full h-52 perspective-1000"
-          onClick={handleFlip}
-        >
-          <motion.div
-            className="relative w-full h-full preserve-3d"
-            initial={{ rotateY: 0 }}
-            animate={controls}
-            whileHover={!isMobile ? { rotateY: 180 } : {}}
-            transition={{ 
-              duration: 0.6,
-              ease: [0.4, 0, 0.2, 1],
-            }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* Front Face (Title) */}
-            <motion.div
-              className={`absolute inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center rounded-2xl border-2 shadow-lg cursor-pointer ${
-                index % 2 === 0 ? 'border-blue-400 shadow-blue-500/20' : 'border-purple-400 shadow-purple-500/20'
-              }`}
-              style={{ backfaceVisibility: "hidden" }}
-            >
-              <GlowingEffect
-                blur={80}
-                spread={60}
-                glow={true}
-                movementDuration={3}
-                borderWidth={2}
-                className={`absolute inset-0 rounded-2xl -z-10 pointer-events-none bg-gradient-to-br ${card.gradient}`}
-              />
-              <div className="text-blue-300">
-                {card.icon}
-              </div>
-              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 text-center px-4">
-                {card.title}
-              </h3>
-            </motion.div>
-            
-            {/* Back Face (Description) */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 backdrop-blur-md flex items-center justify-center rounded-2xl border-2 border-gray-600 shadow-lg cursor-pointer p-6"
-              style={{ 
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg)"
-              }}
-            >
-              <GlowingEffect
-                blur={80}
-                spread={60}
-                glow={true}
-                movementDuration={3}
-                borderWidth={2}
-                className={`absolute inset-0 rounded-2xl -z-10 pointer-events-none bg-gradient-to-br ${card.gradient}`}
-              />
-              <p className="text-gray-200 text-center text-lg">
-                {card.description}
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      );
-    };
-    
-    export default Theme;
+export default Theme;
