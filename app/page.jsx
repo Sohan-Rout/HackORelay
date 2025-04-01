@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@/app/Components/Navbar";
 import Hero from "@/app/Components/Hero";
 import About from "@/app/Components/About";
+import Theme from "./Components/theme";
 import Gallery from "./Components/Gallery";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <Theme />
       <Gallery />
     </div>
   );

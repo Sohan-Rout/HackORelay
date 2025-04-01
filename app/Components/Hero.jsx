@@ -38,6 +38,8 @@ export const Hero = () => {
     <div className="relative min-h-screen w-full bg-neutral-900">
       <BackgroundBeamsWithCollision>
         <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 sm:px-6 lg:px-8">
+          {/* Dotted Grid Background */}
+      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
           {/* Organizer Logo and Name */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
