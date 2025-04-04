@@ -158,17 +158,6 @@ const FAQ = () => {
               Reach out to our team and we'll be happy to help
             </p>
           </div>
-          <motion.a
-            href="/contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden group"
-            whileHover={{ y: -3, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span className="relative z-10">Contact Us</span>
-            <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
-              background: 'radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%)'
-            }}></span>
-          </motion.a>
         </motion.div>
       </motion.div>
     </section>

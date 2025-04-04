@@ -176,6 +176,7 @@ export const Schedule = () => {
           <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
             Event Schedule
           </h2>
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl -z-10"></div>
         </motion.div>
 
         {/* Timeline */}
