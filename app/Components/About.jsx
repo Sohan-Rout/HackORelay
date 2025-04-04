@@ -1,4 +1,3 @@
-"use client";
 import { motion } from "framer-motion";
 import { GlowingEffect } from "@/app/Components/ui/glowing-effect";
 import { cn } from "@/lib/utils";

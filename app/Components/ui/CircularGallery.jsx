@@ -294,7 +294,14 @@ class App {
   constructor(container, { items, bend, textColor = "#ffffff", borderRadius = 0.05, font = "bold 30px DM Sans" } = {}) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
-    this.scroll = { ease: 0.05, current: 0, target: 0, last: 0 };
+    // Slower scroll settings
+    this.scroll = { 
+      ease: 0.05, 
+      current: 0, 
+      target: 0, 
+      last: 0,
+      speed: 0.5 // Added speed multiplier
+    };
     this.onCheckDebounce = debounce(this.onCheck, 200);
     this.createRenderer();
     this.createCamera();
@@ -390,7 +397,7 @@ class App {
   }
 
   onWheel(e) {
-    this.scroll.target += e.deltaY * 0.5;
+    this.scroll.target += e.deltaY * 0.1; // Reduced from 0.5 to 0.1
     this.onCheckDebounce();
   }
 
@@ -481,7 +488,6 @@ export default function CircularGallery({
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Initialize the app with original animation behavior
     const app = new App(containerRef.current, { 
       items, 
       bend, 
@@ -497,17 +503,19 @@ export default function CircularGallery({
 
   return (
     <div className='relative w-full h-full overflow-hidden cursor-grab active:cursor-grabbing' ref={containerRef}>
-      {/* Dotted Grid Background */}
-      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
       
-      {/* Only changed this part - added gradient and glow to the title */}
-      <div className="absolute top-0 left-0 right-0 z-10 text-center pt-4">
-        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">
-          Meet Our Team
-        </h1>
-        {/* Glow effect */}
-        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-48 h-4 bg-purple-500/20 blur-[30px] rounded-full"></div>
-      </div>
+      {/* Floating tech elements - kept since they enhance the visual effect */}
+      <div className="absolute top-1/4 left-1/4 w-20 h-20 rounded-full bg-blue-500/10 blur-xl animate-float"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-28 h-28 rounded-full bg-purple-500/10 blur-xl animate-float-delay"></div>
+
+      {/* Instruction for users */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-8 left-0 right-0 text-center z-10"
+      >
+      </motion.div>
     </div>
   );
-};
+}
