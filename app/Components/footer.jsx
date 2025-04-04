@@ -2,7 +2,6 @@
 import { FaInstagram, FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { motion } from "framer-motion";
-import { BackgroundBeamsWithCollision } from "@/app/Components/ui/background-beams-with-collision";
 
 export const Footer = () => {
   return (

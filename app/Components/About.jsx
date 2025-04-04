@@ -38,13 +38,7 @@ export const About = () => {
   return (
     <section className="relative min-h-screen w-full bg-neutral-950 py-20 overflow-hidden">
   {/* Animated Grid Background */}
-  <div className="absolute inset-0 grid-pattern pointer-events-none" style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-  linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        `,
-        backgroundSize: '40px 40px'
-      }}></div>
+  <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
   
   {/* Floating Tech Elements */}
   <div className="absolute top-1/4 left-1/4 w-20 h-20 rounded-full bg-blue-500/10 blur-lg animate-float"></div>

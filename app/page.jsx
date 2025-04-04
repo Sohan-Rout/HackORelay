@@ -2,6 +2,7 @@
 import Navbar from "@/app/Components/Navbar";
 import Hero from "@/app/Components/Hero";
 import About from "@/app/Components/About";
+import Schedule from "@/app/Components/schedule";
 import Theme from "@/app/Components/theme";
 import Prizes from "@/app/Components/prizes";
 import Gallery from "@/app/Components/Gallery";
@@ -19,6 +20,9 @@ export default function Home() {
       <div id="about">
         <About />
       </div>
+      <div id="schedule">
+        <Schedule />
+      </div>
       <div id="themes">
         <Theme />
       </div>
@@ -26,7 +30,7 @@ export default function Home() {
         <Prizes />
       </div>
       <Gallery />
-      <div id="#faqs">
+      <div id="faqs">
         <FAQ />
       </div>
       <Contact />
