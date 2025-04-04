@@ -1,4 +1,3 @@
-"use client";
 import { FaInstagram, FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { motion } from "framer-motion";
