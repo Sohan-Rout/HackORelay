@@ -8,12 +8,12 @@ export const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const navItems = [
-    { label: "About", href: "/about" },
+    { label: "About", href: "#about" },
     { label: "Schedule", href: "/schedule" },
     { label: "Sponsors", href: "/sponsors" },
-    { label: "Themes", href: "/themes" },
-    { label: "Prizes", href: "/prizes" },
-    { label: "FAQ", href: "/faq" },
+    { label: "Themes", href: "#themes" },
+    { label: "Prizes", href: "#prizes" },
+    { label: "FAQ", href: "#faqs" },
   ];
 
   return (

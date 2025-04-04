@@ -36,9 +36,13 @@ export const Hero = () => {
   return (
     <div className="relative min-h-screen w-full bg-neutral-950 overflow-hidden">
   {/* Glowing Grid Pattern */}
-  <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
-  {/* Dotted Grid Background */}
-  {/*<div className="absolute inset-0 dotted-background pointer-events-none"></div>*/}
+  <div className="absolute inset-0 grid-pattern pointer-events-none" style={{
+        backgroundImage: `
+          linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+  linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        `,
+        backgroundSize: '40px 40px'
+      }}></div>
   
   {/* Floating Tech Elements with Pulse - scaled down */}
   <div className="absolute top-16 left-8 w-12 h-12 rounded-full bg-blue-500/20 blur-lg pulse-animation" style={{ animationDelay: '0s' }}></div>
