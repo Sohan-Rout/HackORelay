@@ -38,51 +38,56 @@ export const Theme = () => {
     { 
       title: "Fintech", 
       description: "Revolutionize financial services with cutting-edge technology for payments, banking, and investments.",
-      icon: <FiDollarSign className="w-6 h-6" />,
-      gradient: "from-green-500/30 to-blue-600/20"
+      icon: <FiDollarSign className="w-6 h-6 text-green-400" />,
+      gradient: "from-green-500/30 to-blue-600/20",
+      iconColor: "text-green-400"
     },
     { 
       title: "Blockchain", 
       description: "Build decentralized applications, smart contracts, and explore distributed ledger technology.",
-      icon: <FiLink className="w-6 h-6" />,
-      gradient: "from-purple-500/30 to-indigo-600/20"
+      icon: <FiLink className="w-6 h-6 text-purple-400" />,
+      gradient: "from-purple-500/30 to-indigo-600/20",
+      iconColor: "text-purple-400"
     },
     { 
       title: "Health & Education", 
       description: "Transform healthcare with digital solutions and redefine learning with EdTech platforms and VR classrooms.",
-      icon: <><FiHeart className="w-6 h-6" /><FiBook className="w-6 h-6 ml-2" /></>,
-      gradient: "from-red-500/30 to-pink-600/20"
+      icon: (
+        <>
+          <FiHeart className="w-6 h-6 text-red-400" />
+          <FiBook className="w-6 h-6 ml-2 text-pink-400" />
+        </>
+      ),
+      gradient: "from-red-500/30 to-pink-600/20",
+      iconColor: "text-red-400"
     },
     { 
       title: "Open Innovation", 
       description: "Collaborate across boundaries to solve complex challenges through open-source approaches.",
-      icon: <FiCpu className="w-6 h-6" />,
-      gradient: "from-yellow-500/30 to-orange-600/20"
+      icon: <FiCpu className="w-6 h-6 text-yellow-400" />,
+      gradient: "from-yellow-500/30 to-orange-600/20",
+      iconColor: "text-yellow-400"
     },
     { 
       title: "IoT", 
       description: "Connect the physical and digital worlds with smart devices and intelligent automation systems.",
-      icon: <FiWifi className="w-6 h-6" />,
-      gradient: "from-blue-500/30 to-cyan-600/20"
+      icon: <FiWifi className="w-6 h-6 text-blue-400" />,
+      gradient: "from-blue-500/30 to-cyan-600/20",
+      iconColor: "text-blue-400"
     },
     { 
       title: "Web3", 
       description: "Shape the future of the internet with decentralized protocols and user-owned platforms.",
-      icon: <FiGlobe className="w-6 h-6" />,
-      gradient: "from-indigo-500/30 to-purple-600/20"
+      icon: <FiGlobe className="w-6 h-6 text-indigo-400" />,
+      gradient: "from-indigo-500/30 to-purple-600/20",
+      iconColor: "text-indigo-400"
     }
   ];
 
   return (
     <section className="relative min-h-screen w-full bg-neutral-950 py-20 overflow-hidden">
       {/* Animated Grid Background */}
-      <div className="absolute inset-0 grid-pattern pointer-events-none" style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-  linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        `,
-        backgroundSize: '40px 40px'
-      }}></div>
+      <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
       
       {/* Floating Tech Elements */}
       <div className="absolute top-1/4 left-1/4 w-20 h-20 rounded-full bg-blue-500/10 blur-lg animate-float"></div>
@@ -136,10 +141,8 @@ export const Theme = () => {
                   className={`absolute inset-0 rounded-xl -z-10 pointer-events-none bg-gradient-to-br ${card.gradient}`}
                 />
                 <div className="relative z-10 flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-full bg-neutral-800/50 border border-neutral-700 flex items-center justify-center mb-4">
-                    <div className="text-blue-300">
-                      {card.icon}
-                    </div>
+                  <div className={`w-14 h-14 rounded-full bg-neutral-800/50 border border-neutral-700 flex items-center justify-center mb-4 ${card.iconColor}`}>
+                    {card.icon}
                   </div>
                   <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-3">
                     {card.title}

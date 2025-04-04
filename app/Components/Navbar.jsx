@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   const navItems = [
     { label: "About", href: "#about" },
-    { label: "Schedule", href: "/schedule" },
+    { label: "Schedule", href: "#schedule" },
     { label: "Sponsors", href: "/sponsors" },
     { label: "Themes", href: "#themes" },
     { label: "Prizes", href: "#prizes" },
